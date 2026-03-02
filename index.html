@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CQS Workshop 2026 — Natural and Engineered Complex Quantum Systems</title>
+  <style>
+    :root {
+      --gold: #dba000;
+      --black: #1a1a1a;
+      --dark-gray: #2d2d2d;
+      --mid-gray: #555;
+      --light-bg: #f7f6f3;
+      --white: #ffffff;
+      --accent: #c6a300;
+      --section-border: #e0dcd4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ---- HEADER / HERO ---- */
+    header {
+      background: linear-gradient(135deg, var(--black) 0%, #1c2333 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 4rem 1.5rem 3.5rem;
+    }
+    header .overline {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.25;
+      max-width: 820px;
+      margin: 0 auto 1rem;
+    }
+    header .subtitle {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: #c0c6d4;
+      max-width: 680px;
+      margin: 0 auto 2rem;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+      font-size: 0.95rem;
+      color: #d0d4de;
+    }
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .hero-meta .icon {
+      font-size: 1.1rem;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--section-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+      padding: 0.6rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--mid-gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover {
+      background: var(--light-bg);
+      color: var(--black);
+    }
+
+    /* ---- SECTIONS ---- */
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    section + section {
+      border-top: 1px solid var(--section-border);
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--black);
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      margin-top: 0.5rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--dark-gray);
+    }
+
+    p { margin-bottom: 1rem; }
+
+    /* ---- ABOUT ---- */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 2rem;
+      margin-top: 1rem;
+    }
+    .topics-grid li {
+      list-style: none;
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: 0.95rem;
+    }
+    .topics-grid li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ---- SCHEDULE TABLE ---- */
+    .schedule-day {
+      margin-bottom: 2rem;
+    }
+    .schedule-day h3 {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px 4px 0 0;
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    table td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--section-border);
+      vertical-align: top;
+    }
+    table td:first-child {
+      width: 160px;
+      font-weight: 600;
+      color: var(--mid-gray);
+      white-space: nowrap;
+    }
+    table tr:last-child td {
+      border-bottom: none;
+    }
+    table .break-row td {
+      background: var(--light-bg);
+      font-style: italic;
+      color: var(--mid-gray);
+    }
+
+    /* ---- SPEAKERS ---- */
+    .speakers-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 2rem;
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .speakers-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--section-border);
+    }
+    .speakers-list .name {
+      font-weight: 600;
+    }
+    .speakers-list .affiliation {
+      font-size: 0.85rem;
+      color: var(--mid-gray);
+    }
+
+    /* ---- ORGANIZERS ---- */
+    .organizers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .organizer-card {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--light-bg);
+      border-radius: 8px;
+    }
+    .organizer-card .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 0.8rem;
+      display: block;
+    }
+    .organizer-card .name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .organizer-card .role {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .organizer-card .affiliation {
+      font-size: 0.85rem;
+      color: var(--mid-gray);
+    }
+
+    .committee-list {
+      list-style: none;
+      margin-top: 1rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+    .committee-list li {
+      padding: 0.3rem 0;
+      font-size: 0.92rem;
+      break-inside: avoid;
+    }
+
+    /* ---- CALL FOR CONTRIBUTIONS ---- */
+    .deadline-table {
+      margin-top: 1rem;
+    }
+    .deadline-table td:first-child {
+      font-weight: 400;
+      color: var(--black);
+      width: auto;
+    }
+    .deadline-table td:last-child {
+      font-weight: 600;
+      color: var(--dark-gray);
+    }
+
+    /* ---- VENUE ---- */
+    .venue-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .venue-info h3 {
+      margin-top: 0;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      background: var(--gold);
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn:hover {
+      background: var(--accent);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ---- SPONSORS ---- */
+    .sponsors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .sponsor-card {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--light-bg);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--black);
+      transition: box-shadow 0.2s;
+    }
+    .sponsor-card:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .sponsor-card img {
+      max-height: 80px;
+      max-width: 100%;
+      object-fit: contain;
+      margin-bottom: 0.8rem;
+    }
+    .sponsor-desc {
+      font-size: 0.85rem;
+      color: var(--mid-gray);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--black);
+      color: #999;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    footer .support {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 700px) {
+      header h1 { font-size: 1.6rem; }
+      .topics-grid,
+      .speakers-list,
+      .venue-info { grid-template-columns: 1fr; }
+      .organizers-grid, .sponsors-grid { grid-template-columns: 1fr; }
+      .committee-list { columns: 1; }
+      table td:first-child { width: 110px; font-size: 0.8rem; }
+      .hero-meta { flex-direction: column; align-items: center; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="overline">UMBC Quantum Workshop 2026</div>
+  <h1>Natural and Engineered Complex Quantum Systems</h1>
+  <p class="subtitle">From Quantum Chemistry to NISQ Devices</p>
+  <div class="hero-meta">
+    <span><span class="icon">&#128197;</span> May 26 &ndash; 27, 2026</span>
+    <span><span class="icon">&#128205;</span> University of Maryland, Baltimore County</span>
+    <span><span class="icon">&#128101;</span> In-Person &middot; ~40 Participants</span>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#call">Contributions</a></li>
+    <li><a href="#registration">Registration</a></li>
+    <li><a href="#venue">Venue &amp; Travel</a></li>
+    <li><a href="#organizers">Organizers</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+  </ul>
+</nav>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <h2>About the Workshop</h2>
+  <p>
+    The <strong>Natural and Engineered Complex Quantum Systems</strong> workshop brings together researchers
+    from quantum information science, quantum chemistry, and quantum thermodynamics to explore the interplay
+    between energetics and information processing in complex molecular systems.
+  </p>
+  <p>
+    Topics range from thermodynamic stability of molecular qubits to quantum simulation of
+    thermodynamic systems, with a strong emphasis on bridging theoretical quantum thermodynamics and
+    experimental applications. The workshop is part of the UMBC Quantum Science initiative and is supported
+    by the DOE Office of Science, Chemical Sciences, Geosciences, and Biosciences Division.
+  </p>
+  <p>
+    A key goal is to provide an inclusive platform for early-career researchers. DOE funding will support
+    the attendance of postdoctoral researchers and graduate students, with prizes awarded for outstanding
+    contributions.
+  </p>
+</section>
+
+<!-- ============ TOPICS ============ -->
+<section id="topics">
+  <h2>Topics of Interest</h2>
+  <ul class="topics-grid">
+    <li>Entropy, entanglement, and coherence generation</li>
+    <li>Scrambling of quantum information</li>
+    <li>Heat dissipation in quantum systems</li>
+    <li>Energy transfer and storage in molecular systems and quantum devices</li>
+    <li>Quantum state stabilization via dynamic driving, measurement, and dissipation</li>
+    <li>Quantum simulation of thermodynamic quantum systems</li>
+    <li>Thermodynamic stability and dynamics of quantum information in molecular systems</li>
+    <li>Molecular qubits and candidates for molecular quantum computing</li>
+    <li>Equilibrium and non-equilibrium quantum thermodynamics of complex molecules</li>
+    <li>Many-body effects and collective excitations in molecular systems</li>
+    <li>Thermodynamics of quantum devices</li>
+    <li>Scalability beyond the qubit paradigm (qudits, continuous-variable modes)</li>
+  </ul>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section id="schedule">
+  <h2>Tentative Schedule</h2>
+
+  <div class="schedule-day">
+    <h3>Day 1 &mdash; Tuesday, May 26</h3>
+    <table>
+      <tr><td>8:00 &ndash; 8:45 AM</td><td>Registration</td></tr>
+      <tr><td>8:45 &ndash; 9:00 AM</td><td>Opening Remarks &mdash; Todd Pittman, Director of the UMBC Quantum Science Institute</td></tr>
+      <tr><td>9:00 &ndash; 10:00 AM</td><td>Keynote Speaker 1</td></tr>
+      <tr class="break-row"><td>10:00 &ndash; 10:15 AM</td><td>Coffee Break</td></tr>
+      <tr><td>10:15 AM &ndash; 12:15 PM</td><td>Focused Session 1</td></tr>
+      <tr class="break-row"><td>12:15 &ndash; 1:30 PM</td><td>Lunch Break</td></tr>
+      <tr><td>1:30 &ndash; 2:30 PM</td><td>Keynote Speaker 2</td></tr>
+      <tr><td>2:30 &ndash; 4:30 PM</td><td>Focused Session 2</td></tr>
+      <tr><td>4:30 &ndash; 6:30 PM</td><td>Poster Session</td></tr>
+    </table>
+  </div>
+
+  <div class="schedule-day">
+    <h3>Day 2 &mdash; Wednesday, May 27</h3>
+    <table>
+      <tr><td>9:00 &ndash; 10:00 AM</td><td>Keynote Speaker 3</td></tr>
+      <tr class="break-row"><td>10:00 &ndash; 10:15 AM</td><td>Coffee Break</td></tr>
+      <tr><td>10:15 AM &ndash; 12:15 PM</td><td>Focused Session 3</td></tr>
+      <tr class="break-row"><td>12:15 &ndash; 1:30 PM</td><td>Lunch Break</td></tr>
+      <tr><td>1:30 &ndash; 2:30 PM</td><td>Keynote Speaker 4</td></tr>
+      <tr><td>2:30 &ndash; 4:30 PM</td><td>Focused Session 4</td></tr>
+      <tr class="break-row"><td>4:30 &ndash; 5:00 PM</td><td>Coffee Break &amp; Awards Committee Deliberation</td></tr>
+      <tr><td>5:00 &ndash; 5:30 PM</td><td>Early-Career Awards &middot; Summary &amp; Closing Remarks</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ SPEAKERS ============ -->
+<section id="speakers">
+  <h2>Invited Speakers</h2>
+  <ul class="speakers-list">
+    <li><span class="name">Stephen Hill</span><br><span class="affiliation">Florida State University, USA</span></li>
+    <li><span class="name">Ignacio Franco</span><br><span class="affiliation">University of Rochester, USA</span></li>
+    <li><span class="name">TBD</span><br><span class="affiliation">&nbsp;</span></li>
+    <li><span class="name">TBD</span><br><span class="affiliation">&nbsp;</span></li>
+  </ul>
+</section>
+
+<!-- ============ CALL FOR CONTRIBUTIONS ============ -->
+<section id="call">
+  <h2>Call for Contributions</h2>
+  <p>
+    We invite abstract submissions for contributed talks and poster presentations on all
+    <a href="#topics">topics of interest</a>. Early-career researchers (graduate students and postdocs)
+    are especially encouraged to submit. Outstanding contributions will be recognized with awards
+    during the closing ceremony.
+  </p>
+
+  <h3>Important Dates</h3>
+  <table class="deadline-table">
+    <tr><td>Abstract submission deadline</td><td>TBA</td></tr>
+    <tr><td>Notification of acceptance</td><td>TBA</td></tr>
+    <tr><td>Workshop dates</td><td>May 26 &ndash; 27, 2026</td></tr>
+  </table>
+
+  <h3>Submission</h3>
+  <p>
+    To submit a contribution, please use the registration form. Include the title, author(s),
+    affiliation(s), and indicate your preference for an oral or poster presentation.
+  </p>
+  <p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRrbg_8E_ZGgzkAI2C62Sti3-d-WYTH8H4ojRkRGNjIartNg/viewform?usp=sharing&ouid=101298227432700533243" class="btn" target="_blank" rel="noopener">Register &amp; Submit Abstract</a>
+  </p>
+</section>
+
+<!-- ============ REGISTRATION ============ -->
+<section id="registration">
+  <h2>Registration</h2>
+  <p>
+    There is no registration fee &mdash; the workshop is supported by the DOE Office of Science.
+    Please register using the form below.
+  </p>
+  <p>
+    Travel support is available for a limited number of early-career participants
+    (postdoctoral researchers and graduate students from U.S. institutions). Details on how to apply
+    for travel support will be posted here.
+  </p>
+  <p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScRrbg_8E_ZGgzkAI2C62Sti3-d-WYTH8H4ojRkRGNjIartNg/viewform?usp=sharing&ouid=101298227432700533243" class="btn" target="_blank" rel="noopener">Register Now</a>
+  </p>
+</section>
+
+<!-- ============ VENUE & TRAVEL ============ -->
+<section id="venue">
+  <h2>Venue &amp; Travel</h2>
+  <div class="venue-info">
+    <div>
+      <h3>Venue</h3>
+      <p>
+        <strong>University of Maryland, Baltimore County</strong><br>
+        Physics Building, Room 101<br>
+        1000 Hilltop Circle<br>
+        Baltimore, MD 21250<br>
+        USA
+      </p>
+    </div>
+    <div>
+      <h3>Getting There</h3>
+      <p>
+        <strong>By air:</strong> Baltimore/Washington International Thurgood Marshall Airport (BWI) is
+        approximately 15 minutes from campus.
+      </p>
+      <p>
+        <strong>By train:</strong> BWI Amtrak/MARC station connects to Baltimore Penn Station and Washington, D.C.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORGANIZERS ============ -->
+<section id="organizers">
+  <h2>Organizers</h2>
+
+  <h3>Co-Chairs</h3>
+  <div class="organizers-grid">
+    <div class="organizer-card">
+      <img class="avatar" src="People/FabioAnza.jpeg" alt="Fabio Anza">
+      <div class="role">Co-Chair</div>
+      <div class="name">Fabio Anza</div>
+      <div class="affiliation">Dept. of Physics &amp; Cybersecurity Institute, UMBC</div>
+    </div>
+    <div class="organizer-card">
+      <img class="avatar" src="People/Sebastian-Deffner-0202-1024x683.jpg" alt="Sebastian Deffner">
+      <div class="role">Co-Chair</div>
+      <div class="name">Sebastian Deffner</div>
+      <div class="affiliation">Dept. of Physics, UMBC &amp; National Quantum Laboratory, UMD College Park</div>
+    </div>
+    <div class="organizer-card">
+      <img class="avatar" src="People/Daniel.jpg" alt="Daniel Suárez-Forero">
+      <div class="role">Co-Chair</div>
+      <div class="name">Daniel Su&aacute;rez-Forero</div>
+      <div class="affiliation">Dept. of Physics, UMBC</div>
+    </div>
+  </div>
+
+  <h3>Organizing Committee</h3>
+  <ul class="committee-list">
+    <li><strong>Cameron Hahn</strong> &mdash; Physics, UMBC</li>
+    <li><strong>Claire Gist</strong> &mdash; Physics, UMBC</li>
+    <li><strong>Edgar Rueda Becerra</strong> &mdash; Physics, UMBC</li>
+    <li><strong>Devjyoti Tripathy</strong> &mdash; Physics, UMBC</li>
+    <li><strong>Maggie Williams</strong> &mdash; Physics, UMBC</li>
+    <li><strong>Reece Robertson</strong> &mdash; CSEE, UMBC</li>
+  </ul>
+
+  <h3>Contact</h3>
+  <p>
+    For questions about the workshop, please contact
+    <a href="mailto:fanza@umbc.edu">fanza@umbc.edu</a>.
+  </p>
+</section>
+
+<!-- ============ SPONSORS ============ -->
+<section id="sponsors">
+  <h2>Sponsors</h2>
+  <p>
+    We gratefully acknowledge UMBC for hosting the workshop, the DOE Office of Science for providing
+    the primary funding, and the UMBC Quantum Science Institute for supporting invited speaker travel
+    and accommodation.
+  </p>
+  <div class="sponsors-grid">
+    <a href="https://www.umbc.edu" class="sponsor-card" target="_blank" rel="noopener">
+      <img src="Logos/UMBC-primary-logo-RGB-3.png" alt="UMBC logo">
+      <div class="sponsor-desc">University of Maryland, Baltimore County</div>
+    </a>
+    <a href="http://qsi.umbc.edu" class="sponsor-card" target="_blank" rel="noopener">
+      <img src="Logos/QSI-logo.png" alt="UMBC Quantum Science Institute logo">
+      <div class="sponsor-desc">UMBC Quantum Science Institute</div>
+    </a>
+    <a href="https://science.osti.gov/bes/csgb" class="sponsor-card" target="_blank" rel="noopener">
+      <img src="Logos/DOE-logo.png" alt="U.S. Department of Energy logo">
+      <div class="sponsor-desc">U.S. Department of Energy, Office of Science &mdash; CSGB Division</div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <p>CQS Workshop 2026 &mdash; University of Maryland, Baltimore County</p>
+  <p class="support">
+    Supported by the <a href="https://science.osti.gov/bes/csgb" target="_blank" rel="noopener">
+    DOE Office of Science, Chemical Sciences, Geosciences, and Biosciences Division</a>.
+  </p>
+</footer>
+
+</body>
+</html>
